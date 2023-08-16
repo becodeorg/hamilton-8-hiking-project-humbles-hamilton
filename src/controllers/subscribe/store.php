@@ -33,7 +33,7 @@ if (Validator::string($_POST['password'], 7)) {
     // $savedText['email'] = $_POST['email'];
 };
 
-if (!Validator::verifEmail($email)) {
+if (!Validator::verifEmail($_POST['email'])) {
     $errors['email'] = 'Please, provide a valid email adress';
     $savedText['email'] = $_POST['email'];
 }
