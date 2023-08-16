@@ -20,7 +20,7 @@
                         <div class="grid grid-cols-3 gap-4 mb-3">
 
                             <div class="sm:col-3">
-                                <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Hike Name</label>
+                                <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Name</label>
                                 <div class="mt-2">
                                     <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
                                         <input type="text" name="name" id="name" class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" placeholder="Your new title">
@@ -34,32 +34,32 @@
 
                         <div class="grid grid-cols-3 gap-4 mb-3">
                             <div class="">
-                                <label for="Duration" class="block text-sm font-medium leading-6 text-gray-900">Duration</label>
+                                <label for="duration" class="block text-sm font-medium leading-6 text-gray-900">Duration</label>
                                 <div class="mt-2">
-                                    <input type="text" name="Duration" id="Duration" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                    <input type="text" name="duration" id="duration" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                 </div>
                             </div>
 
                             <div class="">
-                                <label for="Distance" class="block text-sm font-medium leading-6 text-gray-900">Distance</label>
+                                <label for="distance" class="block text-sm font-medium leading-6 text-gray-900">Distance</label>
                                 <div class="mt-2">
-                                    <input type="text" name="Distance" id="Distance" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                    <input type="text" name="distance" id="distance" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                 </div>
                             </div>
 
                             <div class="">
-                                <label for="eleation-gain" class="block text-sm font-medium leading-6 text-gray-900">Elevation gain</label>
+                                <label for="elevation_gain" class="block text-sm font-medium leading-6 text-gray-900">Elevation gain</label>
                                 <div class="mt-2">
-                                    <input type="text" name="eleation-gain" id="eleation-gain" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                    <input type="text" name="elevation_gain" id="elevation_gain" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                 </div>
                             </div>
                         </div>
 
 
                         <div class="col-span-full mb-3">
-                            <label for="Description" class="block text-sm font-medium leading-6 text-gray-900">Description</label>
+                            <label for="description" class="block text-sm font-medium leading-6 text-gray-900">Description</label>
                             <div class="mt-2">
-                                <textarea id="Description" name="Description" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Write your note here"><?= $savedText['body'] ?? '' ?></textarea>
+                                <textarea id="description" name="description" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Write your note here"><?= $savedText['body'] ?? '' ?></textarea>
                             </div>
 
 
@@ -100,3 +100,5 @@
         </form>
 
 </main>
+
+<?php require 'partials/footer.php'; ?>

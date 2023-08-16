@@ -55,7 +55,7 @@ class Router
     {
         http_response_code($code);
 
-        require basePath("/Views/{$code}Page.php");
+        require basePath("/Views/{$code}.view.php");
 
         die();
     }

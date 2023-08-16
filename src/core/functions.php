@@ -23,3 +23,12 @@ function basePath($path)
 
     return BASE_PATH . $path;
 }
+
+function abort($code = 404)
+{
+    http_response_code($code);
+
+    require basePath("views/{$code}.view.php");
+
+    die();
+}
