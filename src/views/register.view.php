@@ -1,6 +1,6 @@
-<?php require 'partials/head.php'; ?>
+<?php require 'Partials/head.php'; ?>
 
-<?php require 'partials/nav.php'; ?>
+<?php require 'Partials/nav.php'; ?>
 
 
 <main>
@@ -53,4 +53,4 @@
 
 
 
-    <?php require 'partials/footer.php'; ?>
+    <?php require 'Partials/footer.php'; ?>
