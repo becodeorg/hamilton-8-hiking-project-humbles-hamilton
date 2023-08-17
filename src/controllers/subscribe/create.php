@@ -1,6 +1,6 @@
 <?php
 
-$heading = 'Create a new hike';
+$heading = 'Subscribe';
 
 
 

@@ -1,8 +1,8 @@
 <?php
 
-use Core\Validator;
+use core\Validator;
 
-require basePath('/Core/validator.php');
+require basePath('/core/Validator.php');
 
 
 
