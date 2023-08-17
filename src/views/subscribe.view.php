@@ -23,7 +23,7 @@
                                 <label for="firstname" class="block text-sm font-medium leading-6 text-gray-900">First Name</label>
                                 <div class="mt-2">
                                     <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-                                        <input type="text" name="firstname" id="firstname" class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" placeholder="Your new title">
+                                        <input type="text" name="firstname" id="firstname" class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" placeholder="Jean">
                                     </div>
                                 </div>
                             </div>
@@ -32,7 +32,7 @@
                                 <label for="lastname" class="block text-sm font-medium leading-6 text-gray-900">Last Name</label>
                                 <div class="mt-2">
                                     <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-                                        <input type="text" name="lastname" id="lastname" class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" placeholder="Your new title">
+                                        <input type="text" name="lastname" id="lastname" class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" placeholder="Dupont">
                                     </div>
                                 </div>
                             </div>
@@ -41,7 +41,7 @@
                                 <label for="nickname" class="block text-sm font-medium leading-6 text-gray-900">Nick Name</label>
                                 <div class="mt-2">
                                     <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-                                        <input type="text" name="nickname" id="nickname" class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" placeholder="Your new title">
+                                        <input type="text" name="nickname" id="nickname" class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" placeholder="Jean_Dupont_du_96">
                                     </div>
                                 </div>
                             </div>
@@ -54,7 +54,7 @@
                             <div class="">
                                 <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email</label>
                                 <div class="mt-2">
-                                    <input type="text" name="email" id="email" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="<?= $savedText['email'] ?? '' ?>"></input>
+                                    <input type="text" name="email" id="email" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="jean.dupont@hotmail.com" value="<?= $savedText['email'] ?? '' ?>"></input>
                                 </div>
                                 <?php if (isset($errors['email'])) : ?>
 
@@ -67,7 +67,7 @@
                             <div class="">
                                 <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Password</label>
                                 <div class="mt-2">
-                                    <input type="text" name="password" id="password" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="<?= $savedText['password'] ?? '' ?>"></input>
+                                    <input type="text" name="password" id="password" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Motdepasse123" value="<?= $savedText['password'] ?? '' ?>"></input>
 
                                 </div>
                                 <?php if (isset($errors['password'])) : ?>
