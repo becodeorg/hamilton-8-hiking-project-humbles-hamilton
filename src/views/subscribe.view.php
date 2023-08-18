@@ -1,11 +1,8 @@
-<?php require 'Partials/head.php'; ?>
+<?php require 'partials/head.php'; ?>
 
-<?php require 'Partials/nav.php'; ?>
+<?php require 'partials/nav.php'; ?>
 
-<?php require 'Partials/banner.php'; ?>
-
-
-
+<?php require 'partials/banner.php'; ?>
 
 <main>
     <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
@@ -86,7 +83,7 @@
 
 
                         <div class="col-span-full">
-                            <label for="cover-photo" class="block text-sm font-medium leading-6 text-gray-900">Profil Picture</label>
+                            <label for="cover-photo" class="block text-sm font-medium leading-6 text-gray-900">Profile Picture</label>
                             <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
                                 <div class="text-center">
                                     <svg class="mx-auto h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -118,4 +115,4 @@
 
 </main>
 
-<?php require 'Partials/footer.php'; ?>
+<?php require 'partials/footer.php'; ?>

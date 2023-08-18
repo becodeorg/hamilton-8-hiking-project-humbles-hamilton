@@ -1,4 +1,9 @@
-<h1>Editing</h1>
+<?php require 'partials/head.php'; ?>
+
+<?php require 'partials/nav.php'; ?>
+
+<?php require 'partials/banner.php'; ?>
+
 <div class="flex justify-center">
     <form action="#" method="post">
         <div>
@@ -102,6 +107,7 @@
         </div>
     </div>
     <div>
-        <a href="models/Profile.php">Cancel</a>
+        <a href="/controllers/profile/create.php">Cancel</a>
         <button type="submit">Save changes</button>
     </div>
+    <?php require 'partials/footer.php'; ?>
