@@ -12,7 +12,8 @@
             <a href="/hikes/show" class="<?= urlIs('/hikes/show') ? 'bg-gray-900 text-white' : 'text-gray-300' ?> text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">All hikes</a>
             <a href="/hikes/create" class="<?= urlIs('/hikes/create') ? 'bg-gray-900 text-white' : 'text-gray-300' ?> text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">+ Hike</a>
             <a href="/subscribe/create" class="<?= urlIs('/subscribe/create') ? 'bg-gray-900 text-white' : 'text-gray-300' ?> text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Subscribe</a>
-            <a href="/subscribe/create" class="<?= urlIs('/subscribe/create') ? 'bg-gray-900 text-white' : 'text-gray-300' ?> text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">My profile</a>
+            <a href="/profile/create" class="<?= urlIs('/profile/create') ? 'bg-gray-900 text-white' : 'text-gray-300' ?> text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">My profile</a>
+            <a href="/editProfile/create" class="<?= urlIs('/editProfile/create') ? 'bg-gray-900 text-white' : 'text-gray-300' ?> text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Edit profile</a>
           </div>
         </div>
       </div>

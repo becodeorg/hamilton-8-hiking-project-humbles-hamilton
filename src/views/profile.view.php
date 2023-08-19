@@ -1,8 +1,8 @@
-<?php 
-require 'partials/head.php'; 
-require 'partials/nav.php'; 
-require 'partials/banner.php'; 
-?>
+<?php require 'partials/head.php'; ?>
+
+<?php require 'partials/nav.php'; ?>
+
+<?php require 'partials/banner.php'; ?>
 
 <div class="bg-gray-100">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

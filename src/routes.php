@@ -15,3 +15,4 @@ $router->get('/editProfile/create', 'controllers/editProfile/create.php');
 $router->post('/hikes/create', 'controllers/hikes/store.php');
 $router->post('/subscribe', 'controllers/subscribe/store.php');
 $router->post('/hikes/show', 'controllers/hikes/show.php');
+$router->post('/login', 'controllers/login/store.php');

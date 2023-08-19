@@ -4,37 +4,6 @@
 
 <?php require 'partials/banner.php'; ?>
 
-<div class="flex justify-center">
-    <form action="#" method="post">
-        <div>
-            <label for="firstname">Your Firstname</label>
-            <input type="text" id="firstname" name="firstname" value="<?= $user['firstName']; ?>" placeholder="Firstname" required>
-        </div>
-        <div>
-            <label for="lastname">Your Lastname</label>
-            <input type="text" id="lastname" name="lastname" value="<?= $user['lastName']; ?>" placeholder="Lastname" required>
-        </div>
-        <div>
-            <label for="nickname">Your Nickname</label>
-            <input type="text" id="nickname" name="nickname" value="<?= $user['nickname']; ?>" placeholder="Nickname" required>
-        </div>
-
-        <div>
-            <label for="email">Your Email address</label>
-            <input type="email" id="email" name="email" value="<?= $user['email']; ?>" placeholder="email@example.com" required>
-        </div>
-        <div>
-            <label for="password">Your New Password</label>
-            <input type="password" id="password" name="password" placeholder="Password" required minlength="6">
-        </div>
-        <div>
-            <label for="passwordConfirm">Confirm your new password</label>
-            <input type="password" id="passwordConfirm" name="passwordConfirm" placeholder="New password confirmation" required minlength="6">
-        </div>
-
-    </form>
-</div>
-
 <div>
     <div class="px-4 sm:px-0">
         <h2 class="text-base font-semibold leading-7 text-gray-900">Edit your personal informations</h2>
@@ -107,7 +76,7 @@
         </div>
     </div>
     <div>
-        <a href="/controllers/profile/create.php">Cancel</a>
-        <button type="submit">Save changes</button>
+        <a href="/profile/create" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Cancel</a>
+        <button type="submit" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Save changes</button>
     </div>
     <?php require 'partials/footer.php'; ?>

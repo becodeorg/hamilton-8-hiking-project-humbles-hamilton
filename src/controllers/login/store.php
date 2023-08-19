@@ -1,5 +1,6 @@
-<?php
 
+<?php
+/*
 namespace controllers;
 
 use Exception;
@@ -52,16 +53,10 @@ class AuthController
         http_response_code(302);
         header('location: /');
     }
-    /*
+    
     public function loginVerification(array $POST): void
     {
         try{
-        // check la connexion d'un utilisateur
-        // check si les champs ne sont pas vide
-        // 101 => si les champs son vide
-        // 102 => si l'utilisateur n'existe pas dans la DB
-        // 201 => si l'email n'est aps valide
-        // 202 => si le mot de passe n'est pas valide
 
         if(empty($_POST['email']) || empty($POST['password'])){
             throw new Exception("Incomplete form");
@@ -111,7 +106,7 @@ class AuthController
              header($location);
         }
     }
-    */
+    
     public function logout(): void
     {
         unset($_SESSION['user']);
@@ -119,3 +114,54 @@ class AuthController
         header('Location: /');
     }
 }
+*/
+
+use core\Validator;
+
+require basePath('/core/Validator.php');
+
+$errors = [];
+
+$savedText = [];
+
+// User input
+$userInput = [
+    'email' => $_POST['email'],
+    'password' => $_POST['password'],
+];
+
+if (!Validator::verifEmail($_POST['email'])) {
+    $errors['email'] = 'Please provide a valid email address';
+    $savedText['email'] = $_POST['email'];
+}
+
+if (empty($errors)) {
+    try {
+        $pdo = new PDO('dbname=hamilton-8-humbles');
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch (PDOException $e) {
+        echo 'Connection failed: ' . $e->getMessage();
+    }
+
+    $query = "SELECT * FROM `users` WHERE `email` = :email AND `password` = :password LIMIT 1";
+
+    $loginStatement = $pdo->prepare($query);
+
+    $loginStatement->execute([
+        'email' => $userInput['email'],
+        'password' => $userInput['password'],
+    ]);
+
+    $user = $loginStatement->fetch(PDO::FETCH_ASSOC);
+
+    if ($user) {
+        // Successful login
+        header('location: /');
+        die();
+    } else {
+        // Invalid
+        $errors['login'] = 'Invalid email or password';
+    }
+}
+
+require basePath('views/login.view.php');
