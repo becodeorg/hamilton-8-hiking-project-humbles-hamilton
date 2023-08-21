@@ -4,11 +4,11 @@
 
 <?php require 'partials/banner.php' ?>
 
-<div class="bg-gray-100 items-center justify-center">
+<div class="bg-gray-100 flex items-center justify-center">
   <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
-    <div class="mx-auto max-w-2xl py-16 sm:py-24 lg:max-w-none lg:py-32">
+    <div class="mx-auto max-w-2xl py-16 sm:py-24 lg:max-w-none lg:py-16">
 
-        <div class="my profile ">
+        <div class="my profile">
           <div class="flex -space-x-2 overflow-hidden">
             <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" src="<?= $_SESSION['user']['profil_picture']?>" class="inline-block h-50 w-50 rounded-full ring-2 ring-white" alt="">
           </div>
@@ -20,8 +20,8 @@
               <span class="absolute inset-0"></span>
               email<?= $_SESSION['user']['email'] ?>
           </h3>
-          <div class="mb-6 flex items-center justify-center">
-                <a href="/editProfile/create.php" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Edit</a>
+          <div class="mt-14 flex items-center justify-center">
+                <a href="/editProfile/create" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Edit</a>
             </div>
         </div>
       </div>

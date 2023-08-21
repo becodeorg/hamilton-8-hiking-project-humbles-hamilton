@@ -106,29 +106,24 @@ class AuthController
              header($location);
         }
     }
-    
-    public function logout(): void
-    {
-        unset($_SESSION['user']);
-        http_response_code(302);
-        header('Location: /');
-    }
 }
 */
 
+require_once __DIR__ . '/core/Validator.php';
 use core\Validator;
-
 require basePath('/core/Validator.php');
+
+session_start();
 
 $errors = [];
 
 $savedText = [];
 
-// User input
 $userInput = [
     'email' => $_POST['email'],
     'password' => $_POST['password'],
 ];
+
 
 if (!Validator::verifEmail($_POST['email'])) {
     $errors['email'] = 'Please provide a valid email address';
@@ -144,6 +139,10 @@ if (empty($errors)) {
     }
 
     $query = "SELECT * FROM `users` WHERE `email` = :email AND `password` = :password LIMIT 1";
+    $loginStatement = $pdo->prepare($query);
+    $loginStatement->bindParam(':email', $userInput['email']);
+    $loginStatement->bindParam(':password', $userInput['password']);
+
 
     $loginStatement = $pdo->prepare($query);
 
@@ -156,7 +155,8 @@ if (empty($errors)) {
 
     if ($user) {
         // Successful login
-        header('location: /');
+        $_SESSION['user'] = $user;
+        header('Location: /');
         die();
     } else {
         // Invalid
