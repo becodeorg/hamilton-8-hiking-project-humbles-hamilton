@@ -107,7 +107,7 @@ class AuthController
         }
     }
 }
-*/
+//
 
 require_once __DIR__ . '/core/Validator.php';
 use core\Validator;
@@ -165,3 +165,55 @@ if (empty($errors)) {
 }
 
 require basePath('views/login.view.php');
+*/
+
+require_once __DIR__ . '/core/Validator.php';
+use core\Validator;
+
+session_start();
+
+$errors = [];
+$savedText = [];
+$userInput = [
+    'email' => $_POST['email'] ?? '',
+    'password' => $_POST['password'] ?? '',
+];
+
+if (!Validator::verifEmail($userInput['email'])) { 
+    $errors['email'] = 'Please provide a valid email address';
+    $savedText['email'] = $userInput['email'];
+}
+
+if (empty($errors)) {
+    try {
+        $pdo = new PDO('mysql:host=localhost;dbname=hamilton-8-humbles', 'email', 'password');
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch (PDOException $e) {
+        echo 'Connection failed: ' . $e->getMessage();
+        die(); 
+    }
+
+    $query = "SELECT * FROM `users` WHERE `email` = :email AND `password` = :password LIMIT 1";
+    $loginStatement = $pdo->prepare($query);
+    $loginStatement->bindParam(':email', $userInput['email']);
+    $loginStatement->bindParam(':password', $userInput['password']);
+
+    $loginStatement->execute([
+        'email' => $userInput['email'],
+        'password' => $userInput['password'],
+    ]);
+
+    $user = $loginStatement->fetch(PDO::FETCH_ASSOC);
+
+    if ($user) {
+        // Successful login
+        $_SESSION['user'] = $user;
+        header('Location: /');
+        die();
+    } else {
+        // Invalid
+        $errors['login'] = 'Invalid email or password';
+    }
+}
+
+require 'views/login.view.php';

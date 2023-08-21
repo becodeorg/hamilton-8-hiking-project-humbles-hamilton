@@ -36,6 +36,8 @@ require 'partials/banner.php';
 require 'views/profile.view.php';
 require 'Database.php';
 
+session_start();
+
 function getUserById(int|string $id): array|bool
 {
     $sql = "SELECT * FROM Users WHERE id = :id";
