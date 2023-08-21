@@ -4,13 +4,8 @@ use core\Validator;
 
 require basePath('/core/Validator.php');
 
-
-
 $errors = [];
-
 $savedText = [];
-
-
 
 // Données à insérer
 $insertData = [
@@ -18,28 +13,20 @@ $insertData = [
     'lastname' => $_POST['lastname'],
     'nickname' => $_POST['nickname'],
     'email' => $_POST['email'],
-    'password' => $_POST['password'],
+    'password' => password_hash($_POST['password'], PASSWORD_DEFAULT), // Hashage du mot de passe
 ];
 
-
-
 if (Validator::string($_POST['password'], 7)) {
-
     $errors['password'] = 'Password must be at least 7 characters';
     $savedText['password'] = $_POST['password'];
-    // $savedText['lastname'] = $_POST['lastname'];
-    // $savedText['firstname'] = $_POST['firstname'];
-    // $savedText['nickname'] = $_POST['nickname'];
-    // $savedText['email'] = $_POST['email'];
 };
 
 if (!Validator::verifEmail($_POST['email'])) {
-    $errors['email'] = 'Please, provide a valid email adress';
+    $errors['email'] = 'Please, provide a valid email address';
     $savedText['email'] = $_POST['email'];
 }
 
 if (empty($errors)) {
-
     try {
         $pdo = new PDO('mysql:host=188.166.24.55;dbname=hamilton-8-humbles', 'humbles-admin', 'xpjJMDkf1i92fY2h');
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -56,8 +43,8 @@ if (empty($errors)) {
     $insertStatement->execute($insertData);
 
     header('location: /');
-
     die();
 }
 
 require basePath('views/subscribe.view.php');
+

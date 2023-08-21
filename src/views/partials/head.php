@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="http://cdn.tailwindcss.com?plugins=forms"></script>
     <script src="https://kit.fontawesome.com/99e5b11f7e.js" crossorigin="anonymous"></script>
-
+    <link rel="shortcut icon" href="/assets/icon.png" type="image/x-icon">
     <title>Document</title>
 </head>
 

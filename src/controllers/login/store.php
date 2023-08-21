@@ -1,219 +1,53 @@
-
 <?php
-/*
-namespace controllers;
-
-use Exception;
-use models\Database;
-
-class AuthController 
-{
-    
-    public function showLoginForm(): void
-    {
-        if (!empty($_GET['error_value'])){
-        $error_value = $_GET['error_value'];
-    }
-        include_once 'partials/head.php';
-        include_once 'partials/nav.php';
-        include_once 'partials/banner.php';
-        include_once 'views/login.view.php';        
-        include_once 'partials/footer.php';
-    }
-    public function login(string $emailInput, string $passwordInput)
-    {
-        if (empty($emailInput) || empty($passwordInput)) {
-            throw new Exception('Incomplete form');
-        }
-
-        $email = filter_var($emailInput, FILTER_SANITIZE_EMAIL);
-
-        $stmt = $this->db->query(
-            "SELECT * FROM users WHERE email = ?",
-            [$email]
-        );
-
-        $user = $stmt->fetch();
-
-        if (empty($user)) {
-            throw new Exception('Incorrect email');
-        }
-
-        if (password_verify($passwordInput, $user['password']) === false) {
-            throw new Exception('Incorrect password');
-        }
-
-        $_SESSION['user'] = [
-            'id' => $user['id'],
-            'email' => $email,
-            'email' => $user['email']
-        ];
-
-        // Redirect to home page
-        http_response_code(302);
-        header('location: /');
-    }
-    
-    public function loginVerification(array $POST): void
-    {
-        try{
-
-        if(empty($_POST['email']) || empty($POST['password'])){
-            throw new Exception("Incomplete form");
-        }
-        //filter
-        $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-        if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
-            throw new Exception('Invalid email address');
-        }
-        //get user
-        $user = user::getUserByEmail($email);
-        if (empty($user)){
-            throw new Exception("No existing account found");
-        }
-
-        if (!password_verify($POST['password'], $user['password'])) {
-            throw new exception("Invalid password");
-        }
-        unset($_SESSION['user']);
-        $_SESSION['user'] = array(
-            "id" => $user['id'],
-            "nickname" => $user['nickname'],
-            "email" => $email
-        );
-
-        header('Location: /');
-    }catch (Exception $e){
-        $location = 'Location: /login?error_value=';
-        $msg = $e->getMessage();
-
-        switch ($msg){
-            case "101":
-                $location .= 'nodata';
-                break;
-            case "102":
-                $location .= "nodb";
-                break;
-            case "201":
-                $location .= "email";
-                break;
-            case "202":
-                $location .= "pwd";
-                break;
-            default:
-                header('Location: /error');
-             }
-             header($location);
-        }
-    }
-}
-//
-
-require_once __DIR__ . '/core/Validator.php';
-use core\Validator;
-require basePath('/core/Validator.php');
-
 session_start();
+require basePath('/core/Validator.php');
 
 $errors = [];
 
-$savedText = [];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
 
-$userInput = [
-    'email' => $_POST['email'],
-    'password' => $_POST['password'],
-];
-
-
-if (!Validator::verifEmail($_POST['email'])) {
-    $errors['email'] = 'Please provide a valid email address';
-    $savedText['email'] = $_POST['email'];
-}
-
-if (empty($errors)) {
-    try {
-        $pdo = new PDO('dbname=hamilton-8-humbles');
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    } catch (PDOException $e) {
-        echo 'Connection failed: ' . $e->getMessage();
+    if (empty($email)) {
+        $errors['email'] = 'Email is required';
     }
 
-    $query = "SELECT * FROM `users` WHERE `email` = :email AND `password` = :password LIMIT 1";
-    $loginStatement = $pdo->prepare($query);
-    $loginStatement->bindParam(':email', $userInput['email']);
-    $loginStatement->bindParam(':password', $userInput['password']);
+    if (empty($password)) {
+        $errors['password'] = 'Password is required';
+    }
 
+    if (empty($errors)) {
+        try {
+            $pdo = new PDO('mysql:host=188.166.24.55;dbname=hamilton-8-humbles', 'humbles-admin', 'xpjJMDkf1i92fY2h');
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch (PDOException $e) {
+            echo 'Connection failed: ' . $e->getMessage();
+            exit;
+        }
 
-    $loginStatement = $pdo->prepare($query);
+        echo 'Connected to the database<br>';
 
-    $loginStatement->execute([
-        'email' => $userInput['email'],
-        'password' => $userInput['password'],
-    ]);
+        $query = "SELECT * FROM `users` WHERE `email` = :email";
+        $selectStatement = $pdo->prepare($query);
+        $selectStatement->execute(['email' => $email]);
+        $user = $selectStatement->fetch(PDO::FETCH_ASSOC);
 
-    $user = $loginStatement->fetch(PDO::FETCH_ASSOC);
-
-    if ($user) {
-        // Successful login
-        $_SESSION['user'] = $user;
-        header('Location: /');
-        die();
-    } else {
-        // Invalid
-        $errors['login'] = 'Invalid email or password';
+        if ($user) {
+            echo 'User found<br>';
+            if (password_verify($password, $user['password'])) {
+                echo 'Password is correct<br>';
+                $_SESSION['user_id'] = $user['id'];
+                header('Location: /');
+                exit;
+            } else {
+                echo 'Password is incorrect<br>';
+                $errors['login'] = 'Invalid email or password';
+            }
+        } else {
+            echo 'User not found<br>';
+            $errors['login'] = 'Invalid email or password';
+        }
     }
 }
 
 require basePath('views/login.view.php');
-*/
-
-require_once __DIR__ . '/core/Validator.php';
-use core\Validator;
-
-session_start();
-
-$errors = [];
-$savedText = [];
-$userInput = [
-    'email' => $_POST['email'] ?? '',
-    'password' => $_POST['password'] ?? '',
-];
-
-if (!Validator::verifEmail($userInput['email'])) { 
-    $errors['email'] = 'Please provide a valid email address';
-    $savedText['email'] = $userInput['email'];
-}
-
-if (empty($errors)) {
-    try {
-        $pdo = new PDO('mysql:host=localhost;dbname=hamilton-8-humbles', 'email', 'password');
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    } catch (PDOException $e) {
-        echo 'Connection failed: ' . $e->getMessage();
-        die(); 
-    }
-
-    $query = "SELECT * FROM `users` WHERE `email` = :email AND `password` = :password LIMIT 1";
-    $loginStatement = $pdo->prepare($query);
-    $loginStatement->bindParam(':email', $userInput['email']);
-    $loginStatement->bindParam(':password', $userInput['password']);
-
-    $loginStatement->execute([
-        'email' => $userInput['email'],
-        'password' => $userInput['password'],
-    ]);
-
-    $user = $loginStatement->fetch(PDO::FETCH_ASSOC);
-
-    if ($user) {
-        // Successful login
-        $_SESSION['user'] = $user;
-        header('Location: /');
-        die();
-    } else {
-        // Invalid
-        $errors['login'] = 'Invalid email or password';
-    }
-}
-
-require 'views/login.view.php';

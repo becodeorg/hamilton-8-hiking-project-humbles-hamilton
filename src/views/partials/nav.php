@@ -14,6 +14,14 @@
             <a href="/subscribe/create" class="<?= urlIs('/subscribe/create') ? 'bg-gray-900 text-white' : 'text-gray-300' ?> text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Subscribe</a>
             <a href="/profile/create" class="<?= urlIs('/profile/create') ? 'bg-gray-900 text-white' : 'text-gray-300' ?> text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">My profile</a>
             <a href="/editProfile/create" class="<?= urlIs('/editProfile/create') ? 'bg-gray-900 text-white' : 'text-gray-300' ?> text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Edit profile</a>
+            <div class="text-gray-300 rounded-md px-3 py-2 text-sm font-medium">
+              <?php if (!empty($_SESSION['users'])) : ?>
+                Hello <?= $_SESSION['users']['nickname'] ?>!
+                <a href="/logout"><strong>Logout</strong></a>
+              <?php else : ?>
+                <a href="/login"><strong>Login</strong></a>
+              <?php endif; ?>
+            </div>
           </div>
         </div>
       </div>
@@ -31,7 +39,6 @@
           <div class="relative ml-3">
             <div>
               <a href="/login">
-
                 <button type="button" class="relative flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                   <span class="absolute -inset-1.5"></span>
                   <span class="sr-only">Open user menu</span>
