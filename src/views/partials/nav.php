@@ -12,15 +12,18 @@
             <a href="/hikes/show" class="<?= urlIs('/hikes/show') ? 'bg-gray-900 text-white' : 'text-gray-300' ?> text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">All hikes</a>
             <a href="/hikes/create" class="<?= urlIs('/hikes/create') ? 'bg-gray-900 text-white' : 'text-gray-300' ?> text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">+ Hike</a>
             <a href="/subscribe/create" class="<?= urlIs('/subscribe/create') ? 'bg-gray-900 text-white' : 'text-gray-300' ?> text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Subscribe</a>
-            <a href="/profile/create" class="<?= urlIs('/profile/create') ? 'bg-gray-900 text-white' : 'text-gray-300' ?> text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">My profile</a>
+            
+            <?php if (!empty($_SESSION['users'])) : ?>
+                <a href="/profile/create" class="<?= urlIs('/profile/create') ? 'bg-gray-900 text-white' : 'text-gray-300' ?> text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">My profile</a>
+              <?php endif; ?>
+
             <a href="/editProfile/create" class="<?= urlIs('/editProfile/create') ? 'bg-gray-900 text-white' : 'text-gray-300' ?> text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Edit profile</a>
             <div class="text-gray-300 rounded-md px-3 py-2 text-sm font-medium">
               <?php if (!empty($_SESSION['users'])) : ?>
                 Hello <?= $_SESSION['users']['nickname'] ?>!
                 <a href="/logout"><strong>Logout</strong></a>
-              <?php else : ?>
-                <a href="/login"><strong>Login</strong></a>
               <?php endif; ?>
+
             </div>
           </div>
         </div>
@@ -83,10 +86,6 @@
       <div class="flex items-center px-5">
         <div class="flex-shrink-0">
         </div>
-        <div class="ml-3">
-          <div class="text-base font-medium leading-none text-white"><?= $_SESSION['user']['nickname'] ?></div>
-          <div class="text-sm font-medium leading-none text-gray-400"><?= $_SESSION['user']['email'] ?></div>
-        </div>
         <button type="button" class="relative ml-auto flex-shrink-0 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
           <span class="absolute -inset-1.5"></span>
           <span class="sr-only">View notifications</span>
@@ -98,8 +97,8 @@
       <div class="mt-3 space-y-1 px-2">
         <a href="/profile/create" class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Your Profile</a>
         <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Settings</a>
-        <?php if (!empty($_SESSION['user'])) : ?>
-          Hello <?= $_SESSION['user']['nickname'] ?>!
+        <?php if (!empty($_SESSION['users'])) : ?>
+          Hello <?= $_SESSION['users']['nickname'] ?>!
           <a href="/logout" class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Sign out</a>
         <?php else : ?>
           <a href="/login" class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Log in</a>

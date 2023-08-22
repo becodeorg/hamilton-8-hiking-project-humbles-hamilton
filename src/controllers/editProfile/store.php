@@ -1,5 +1,5 @@
 <?php
-
+/*
 namespace Models;
 use Exception;
 include 'views/Editprofile.view.php';
@@ -67,6 +67,76 @@ class EditProfile extends Database
                     echo "Upload error: " . $_FILES["photo"]["error"];
                 }
             }
+    }
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $editProfile = new EditProfile();
+    $editProfile->editProfile();
+}
+
+*/
+
+namespace Models;
+
+use Exception;
+
+require 'views/partials/head.php';
+require 'views/partials/nav.php';
+require 'views/partials/banner.php';
+require 'views/Editprofile.view.php';
+
+session_start();
+
+class EditProfile extends Database
+{
+    public function updateUserFirstname(array $param): bool
+    {
+        $sql = "UPDATE Users SET firstname = :firstname WHERE uid = :uid";
+        return Database::exec($sql, $param);
+    }
+
+    public function updateUserLastname(array $param): bool
+    {
+        $sql = "UPDATE Users SET lastname = :lastname WHERE uid = :uid";
+        return Database::exec($sql, $param);
+    }
+
+    public function updateUserEmail(array $param): bool
+    {
+        $sql = "UPDATE Users SET email = :email WHERE uid = :uid";
+        return Database::exec($sql, $param);
+    }
+
+    public function updateUserPassword(array $param): bool
+    {
+        $sql = "UPDATE Users SET password = :password WHERE uid = :uid";
+        return Database::exec($sql, $param);
+    }
+
+    public function editProfile()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            
+            //file upload for profile picture
+            if ($_FILES["photo"]["error"] == UPLOAD_ERR_OK) {
+                $targetDir = "uploads/";
+                $targetFile = $targetDir . basename($_FILES["photo"]["name"]);
+                
+                if (move_uploaded_file($_FILES["photo"]["tmp_name"], $targetFile)) {
+                    echo "File uploaded successfully.";
+                } else {
+                    echo "Error uploading file.";
+                }
+            } else {
+                echo "Upload error: " . $_FILES["photo"]["error"];
+            }
+            
+            //email change confirmation 
+            
+            // Redirect to profile
+            header("Location: /profile/create");
+        }
     }
 }
 

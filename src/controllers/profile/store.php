@@ -40,14 +40,14 @@ session_start();
 
 function getUserById(int|string $id): array|bool
 {
-    $sql = "SELECT * FROM Users WHERE id = :id";
+    $sql = "SELECT * FROM users WHERE id = :id";
     $result = Database::query($sql, ["id" => $id]);
     return $result->fetch();
 }
 
 function getUserByEmail(string $email): array|bool
 {
-    $sql = "SELECT * FROM Users WHERE email = :email";
+    $sql = "SELECT * FROM users WHERE email = :email";
     $result = Database::query($sql, ["email" => $email]);
     return $result->fetch();
 }

@@ -13,7 +13,8 @@ $insertData = [
     'lastname' => $_POST['lastname'],
     'nickname' => $_POST['nickname'],
     'email' => $_POST['email'],
-    'password' => password_hash($_POST['password'], PASSWORD_DEFAULT), // Hashage du mot de passe
+   // Hashing password 
+   'password' => password_hash($_POST['password'], PASSWORD_DEFAULT), 
 ];
 
 if (Validator::string($_POST['password'], 7)) {

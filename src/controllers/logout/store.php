@@ -3,7 +3,7 @@
    {
        session_start();
 
-       unset($_SESSION['user']);
+       unset($_SESSION['users']);
        http_response_code(302);
        header('Location: /');
    }
